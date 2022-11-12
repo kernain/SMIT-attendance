@@ -1,4 +1,4 @@
-import {logoutfromfirebase } from "../../config/firebase.js";
+import {logoutfromfirebase, addClassToDb } from "../../config/firebase.js";
 
 window.logout = async function () {
     try {
@@ -13,6 +13,7 @@ window.logout = async function () {
       console.log(e.message);
     }
   };
+
 
 // SIDEBAR DROPDOWN
 const allDropdown = document.querySelectorAll('#sidebar .side-dropdown');
@@ -163,3 +164,25 @@ window.addEventListener('click', function (e) {
 	})
 })
 
+
+
+window.addClass = async function(){ 
+    const classSchedule = document.getElementById("class-schedule").value;
+    const classTiming = document.getElementById("class-timings").value;
+    const teacherName = document.getElementById("teacher-name").value;
+    const sectionName = document.getElementById("section-name").value;
+    const courseName = document.getElementById("course-name").value;
+    const batchNumber = document.getElementById("batch-number").value;
+    const className = document.getElementById("class-name").value;
+
+    try{
+        await addClassToDb(classSchedule, classTiming, teacherName, sectionName, courseName, batchNumber, className);
+        swal({
+            title: "Class Successfully Added!",
+            icon: "success",
+            timer: 3000
+        });
+    }catch(e){
+        console.log(e.message)
+    }
+}

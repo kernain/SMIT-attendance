@@ -1,4 +1,5 @@
-import {logoutfromfirebase } from "../../config/firebase.js";
+import {logoutfromfirebase, getClasses, uploadImage , addStudentToDb  } from "../../config/firebase.js";
+// addStudentToDb
 
 window.logout = async function () {
     try {
@@ -13,6 +14,35 @@ window.logout = async function () {
       console.log(e.message);
     }
   };
+
+  window.getClassList = async function() {
+    try{
+       const classList = await getClasses();
+       const classElem = document.getElementById("classes-list");
+       console.log(classList)
+       for(let item of classList){
+        classElem.innerHTML += 
+        `<div class="card w-75">
+        <div class="card-body">
+          <h5 class="card-title">${item.className}</h5>
+          <p class="card-text">${item.courseName}.</p>
+          <a href="#" class="btn btn-primary" onclick={goToDetail('${item.id}')}>Open Class</a>
+        </div>
+      </div>`;
+       }
+
+    }catch(e){
+        console.log(e.message)
+    }
+  }
+
+  getClassList();
+
+  window.goToDetail = async function(id){
+    console.log(id)
+    location.href = `../classDetails/classDetails.html?id=${id}`
+  }
+    
 
 // SIDEBAR DROPDOWN
 const allDropdown = document.querySelectorAll('#sidebar .side-dropdown');
@@ -162,4 +192,5 @@ window.addEventListener('click', function (e) {
 		}
 	})
 })
+
 

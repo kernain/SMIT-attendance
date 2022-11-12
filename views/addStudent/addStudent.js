@@ -1,4 +1,5 @@
-import {logoutfromfirebase } from "../../config/firebase.js";
+import {logoutfromfirebase, getClasses, uploadImage , addStudentToDb  } from "../../config/firebase.js";
+// addStudentToDb
 
 window.logout = async function () {
     try {
@@ -13,6 +14,23 @@ window.logout = async function () {
       console.log(e.message);
     }
   };
+
+  window.getClassList = async function() {
+    try{
+       const classList = await getClasses();
+       const classOption = document.getElementById("class-list");
+       console.log(classList)
+       for(let item of classList){
+           classOption.insertAdjacentHTML('afterend', `
+           <option value="${item.sectionName}">${item.sectionName}</option>`);
+       }
+
+    }catch(e){
+        console.log(e.message)
+    }
+  }
+
+  getClassList();
 
 // SIDEBAR DROPDOWN
 const allDropdown = document.querySelectorAll('#sidebar .side-dropdown');
@@ -163,3 +181,28 @@ window.addEventListener('click', function (e) {
 	})
 })
 
+
+
+
+window.addStudent = async function(){ 
+    const studentName = document.getElementById("student-name").value;
+    const fatherName = document.getElementById("father-name").value;
+    const rollNo = document.getElementById("roll-number").value;
+    const contactNo = document.getElementById("contact-no").value;
+    const cnicnNo = document.getElementById("cnic-no").value;
+    const courseName = document.getElementById("course-name").value;
+    const sectionName = document.getElementById("class-name").value;
+    const image = document.getElementById("img").files[0];
+
+    try{
+        const imgResult = await uploadImage(image)
+        await addStudentToDb(studentName, fatherName, rollNo, contactNo, cnicnNo, courseName, sectionName, imgResult);
+        swal({
+            title: "Student Successfully Added!",
+            icon: "success",
+            timer: 3000
+        });
+    }catch(e){
+        console.log(e.message)
+    }
+}

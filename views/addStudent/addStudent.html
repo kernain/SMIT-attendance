@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+    <link rel="stylesheet" href="addStudent.css">
+
+    <title>SMIT - Attendance Management System</title>
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <section id="sidebar">
+        <a href="#" class="brand"><img width="60%" class="img-fluid mx-auto my-auto" src="../../imgs/smit.png"
+                alt=""></a>
+        <ul class="side-menu">
+            <li><a href="../dashboard/dashboard.html" class=""><i class='bx bxs-dashboard icon'></i> Dashboard</a></li>
+            <li><a href="../addClass/addClass.html" class=""><i class='bx bxs-book icon '></i> Add New Class</a>
+            <li><a href="../allClasses/allClasses.html" class=""><i class='bx bxs-book icon '></i> All Classes</a>
+            </li>
+            <li><a href="#" class="active"><i class='bx bxs-graduation icon'></i> Add New Student</a></li>
+            <li><a href="#"><i class='bx bxs-search-alt-2 icon'></i> Search Student</a></li>
+        </ul>
+    </section>
+
+    <!-- NAVBAR -->
+    <section id="content">
+        <!-- NAVBAR -->
+        <nav>
+            <i class='bx bx-menu toggle-sidebar'></i>
+            <form action="#">
+                <div class="form-group">
+                    <input type="text" placeholder="Search...">
+                    <i class='bx bx-search icon'></i>
+                </div>
+            </form>
+            <div class="profile">
+                <img src="https://img.icons8.com/office/40/null/guest-male--v1.png" alt="">
+                <ul class="profile-link">
+                    <li><a href="#"><i class='bx bxs-user-circle icon'></i> Profile</a></li>
+                    <li><a href="#"><i class='bx bxs-cog'></i> Settings</a></li>
+                    <li><a href="#" onclick="logout()"><i class='bx bxs-log-out-circle'></i> Logout</a></li>
+                </ul>
+            </div>
+        </nav>
+        <!-- NAVBAR -->
+
+        <!-- MAIN -->
+        <main>
+            <h1 class="title text-center">SMIT - Attendance Management System</h1>
+            <h3 class="text-center">Add a new Student</h3>
+            <div class="info-data">
+
+            </div>
+
+        </main>
+        <section>
+            <div class="page-wrapper bg-red p-t-180 p-b-100 font-robo">
+                <div class="wrapper wrapper--w960">
+                    <div class="card card-2">
+                        <div class="card-body">
+                            <h2 class="title">Add Student</h2>
+                            <form>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="input-group">
+                                            <input class="input--style-2" type="text" placeholder="Enter Student Name"
+                                                id="student-name">
+                                        </div>
+                                        <div class="input-group">
+                                            <input class="input--style-2" type="text" placeholder="Enter Father's Name"
+                                                id="father-name">
+                                        </div>
+                                        <div class="input-group">
+                                            <input class="input--style-2" type="text" placeholder="Enter Roll Number"
+                                                id="roll-number">
+                                        </div>
+                                        <div class="input-group">
+                                            <input class="input--style-2" type="file" id="img">
+                                        </div>
+
+
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="input-group">
+                                            <input class="input--style-2" type="text" placeholder="Enter Contact Number"
+                                                id="contact-no">
+                                        </div>
+                                        <div class="input-group">
+                                            <input class="input--style-2" type="text" placeholder="Enter CNIC Number"
+                                                id="cnic-no">
+                                        </div>
+                                        <div class="input-group">
+                                            <input class="input--style-2" type="text" placeholder="Enter Course Name"
+                                                id="course-name">
+                                        </div>
+                                        <div class="input-group">
+                                            <select class="form-control mb-2 border-0" id="class-name">
+                                                <option class="hidden" selected disabled id="class-list">Assign Class
+                                                </option>
+
+                                            </select>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </form>
+                            <div class="p-t-30">
+                                <button onclick="addStudent()" class="btn btn--radius btn--green">Add Student</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- MAIN -->
+    </section>
+    <!-- NAVBAR -->
+
+    <script type="module" src="addStudent.js"></script>
+    <script type="module" src="../../config/firebase.js"></script>
+</body>
+
+</html>
