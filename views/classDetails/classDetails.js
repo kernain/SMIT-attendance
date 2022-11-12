@@ -166,23 +166,8 @@ window.addEventListener('click', function (e) {
 
 
 
-window.addClass = async function(){ 
-    const classSchedule = document.getElementById("class-schedule").value;
-    const classTiming = document.getElementById("class-timings").value;
-    const teacherName = document.getElementById("teacher-name").value;
-    const sectionName = document.getElementById("section-name").value;
-    const courseName = document.getElementById("course-name").value;
-    const batchNumber = document.getElementById("batch-number").value;
-    const className = document.getElementById("class-name").value;
+window.searchStudent = async function(){
+    const rollNo = document.getElementById("roll-no");
 
-    try{
-        await addClassToDb(classSchedule, classTiming, teacherName, sectionName, courseName, batchNumber, className);
-        swal({
-            title: "Class Successfully Added!",
-            icon: "success",
-            timer: 3000
-        });
-    }catch(e){
-        console.log(e.message)
-    }
+    
 }
